@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put } from "@nestjs/common";
 import { ProductService } from "../service/product.service";
 import { ProductEntity } from "../entity/product.entity";
 import { ProductDto } from "../entity/dto/product.dto";
+import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
 
 @Controller("product")
 export class ProductController {
@@ -21,6 +22,15 @@ export class ProductController {
     } else {
       return product;
     }
+  }
+
+  @Put(":id")
+  async update(@Param("id") id: number, @Body() data: Partial<UpdateProductDto>) {
+    await this.service.updateProduct(id, data);
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Product updated successfully'
+    };
   }
 
   @Post()

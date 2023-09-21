@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ProductEntity } from "../entity/product.entity";
 import { ProductDto } from "../entity/dto/product.dto";
+import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
 
 @Injectable()
 export class ProductService {
@@ -29,12 +30,18 @@ export class ProductService {
     });
   }
 
-  async deleteProduct(id: number): Promise<any> {
-    await this.productRepository.destroy({ where: { id } });
+  async updateProduct(id: number, data: Partial<UpdateProductDto>) {
+    const existingProduct = await this.productRepository.findOne({ where: { id } });
+    if (!existingProduct) {
+      throw new Error("Product not found");
+    }
+    return await this.productRepository.update(data, { where: { id } });
   }
 
 
-
+  async deleteProduct(id: number): Promise<any> {
+    await this.productRepository.destroy({ where: { id } });
+  }
 
 
 }
