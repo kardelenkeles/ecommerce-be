@@ -1,4 +1,3 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty } from "class-validator";
 
 export class ProductDto {
@@ -15,5 +14,10 @@ export class ProductDto {
   @IsNotEmpty()
   price: number;
 
+  @IsNotEmpty()
+  discount: number;
+
+  @IsNotEmpty()
+  lastUpdate: Date;
 
 }
