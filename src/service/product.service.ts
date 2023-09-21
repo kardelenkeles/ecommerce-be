@@ -25,10 +25,15 @@ export class ProductService {
       details: productDto.details,
       productImage: productDto.productImage,
       price: productDto.price,
-      discount: productDto.discount,
-      lastUpdate: productDto.lastUpdate
+      discount: productDto.discount
     });
   }
+
+  async deleteProduct(id: number): Promise<any> {
+    await this.productRepository.destroy({ where: { id } });
+  }
+
+
 
 
 

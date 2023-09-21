@@ -17,7 +17,4 @@ export class ProductDto {
   @IsNotEmpty()
   discount: number;
 
-  @IsNotEmpty()
-  lastUpdate: Date;
-
 }

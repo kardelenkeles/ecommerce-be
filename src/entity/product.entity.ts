@@ -17,8 +17,5 @@ export class ProductEntity extends Model {
   @Column
   discount: number;
 
-  @Column
-  lastUpdate: Date;
-
 
 }
