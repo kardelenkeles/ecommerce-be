@@ -9,7 +9,10 @@ export class ProductDto {
   details: string;
 
   @IsNotEmpty()
-  productImage: string;
+  category: string;
+
+  // @IsNotEmpty()
+  // productImage: string;
 
   @IsNotEmpty()
   price: number;

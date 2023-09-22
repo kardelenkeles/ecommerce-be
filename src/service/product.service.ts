@@ -24,7 +24,8 @@ export class ProductService {
     return this.productRepository.create({
       productName: productDto.productName,
       details: productDto.details,
-      productImage: productDto.productImage,
+      category: productDto.category,
+      // productImage: productDto.productImage,
       price: productDto.price,
       discount: productDto.discount
     });

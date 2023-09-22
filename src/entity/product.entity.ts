@@ -9,7 +9,10 @@ export class ProductEntity extends Model {
   details: string;
 
   @Column
-  productImage: string;
+  category: string;
+  //
+  // @Column
+  // productImage: string;
 
   @Column
   price: number;

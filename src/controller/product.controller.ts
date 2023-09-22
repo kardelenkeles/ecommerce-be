@@ -1,10 +1,23 @@
-import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  Post,
+  Put, UploadedFile,
+  UseInterceptors
+} from "@nestjs/common";
 import { ProductService } from "../service/product.service";
 import { ProductEntity } from "../entity/product.entity";
 import { ProductDto } from "../entity/dto/product.dto";
 import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
 
-@Controller("product")
+@Controller("products")
 export class ProductController {
   constructor(private service: ProductService) {
   }
@@ -44,4 +57,6 @@ export class ProductController {
     return product;
 
   }
+
+
 }
