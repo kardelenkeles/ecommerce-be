@@ -16,7 +16,13 @@ export class CardService {
   }
 
   async getCard(id: number) {
-    return this.cardRepo.findOne({ where: { id } });
+    return this.cardRepo.findOne({
+      where: { id },
+      include: [{
+        association: "cardProduct",
+        include: ["product"]
+      }]
+    });
   }
 
   async createCard(cardDto: CardDto) {
@@ -35,7 +41,9 @@ export class CardService {
       });
       promises.push(prom);
     });
-    return Promise.all(promises);
+    await Promise.all(promises);
+
+    return this.getCard(cart.id);
   }
 
   async updateCard(cardId: number, cardDto: CardDto) {
@@ -44,7 +52,7 @@ export class CardService {
     });
 
     if (!card) {
-      throw new NotFoundException("Kart bulunamadı");
+      throw new NotFoundException("Cart Not Found");
     }
 
     await this.cardProductsRepo.destroy({
@@ -66,7 +74,7 @@ export class CardService {
     card.quantity = cardDto.quantity;
     await card.save();
 
-    return card;
+    return this.getCard(card.id);
 
   }
 

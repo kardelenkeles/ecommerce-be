@@ -4,14 +4,12 @@ import { CardProductEntity } from "./cardProduct.entity";
 @Table
 export class CardEntity extends Model {
 
-  @HasMany(() => CardProductEntity)
-  cardProduct: CardProductEntity[];
-
   @Column
   total: number;
 
   @Column
   quantity: number;
 
-
+  @HasMany(() => CardProductEntity)
+  cardProduct: CardProductEntity[];
 }

@@ -1,4 +1,4 @@
-import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
 import { ProductEntity } from "./product.entity";
 import { CardEntity } from "./card.entity";
 
@@ -12,8 +12,9 @@ export class CardProductEntity extends Model {
   @Column
   cardId: number;
 
-
-
-
+  @HasOne(() => ProductEntity, {
+    foreignKey: "id",
+    sourceKey: "productId"
+  })
+  product: ProductEntity;
 }
-
