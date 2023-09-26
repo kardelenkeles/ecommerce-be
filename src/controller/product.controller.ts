@@ -7,15 +7,13 @@ import {
   NotFoundException,
   Param,
   Post,
-  Put, UploadedFile,
-  UseInterceptors
+  Put, Query
 } from "@nestjs/common";
-import { ProductService } from "../service/product.service";
 import { ProductEntity } from "../entity/product.entity";
+import { ProductService } from "../service/product.service";
 import { ProductDto } from "../entity/dto/product.dto";
 import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { diskStorage } from "multer";
+
 
 @Controller("products")
 export class ProductController {
@@ -23,8 +21,9 @@ export class ProductController {
   }
 
   @Get()
-  getAll() {
-    return this.service.getAllProducts();
+  async getAll(@Query('category') category:string) {
+    const products = await this.service.getAllProducts(category);
+    return products;
   }
 
   @Get(":id")

@@ -1,4 +1,5 @@
 import { Column, Model, Table } from "sequelize-typescript";
+
 @Table
 export class ProductEntity extends Model {
 
@@ -10,9 +11,6 @@ export class ProductEntity extends Model {
 
   @Column
   category: string;
-  //
-  // @Column
-  // productImage: string;
 
   @Column
   price: number;

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, Param, Query } from "@nestjs/common";
 import { ProductEntity } from "../entity/product.entity";
 import { ProductDto } from "../entity/dto/product.dto";
 import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
@@ -11,14 +11,16 @@ export class ProductService {
   ) {
   }
 
-  async getAllProducts(): Promise<ProductEntity[]> {
-    return await this.productRepository.findAll<ProductEntity>();
+  async getAllProducts(category ?: string): Promise<ProductEntity[]> {
+    const whereProduct = category ? {category} : {};
+    return await this.productRepository.findAll<ProductEntity>({
+      where: whereProduct
+    });
   }
 
   async getOneProduct(id: string): Promise<ProductEntity> {
     return this.productRepository.findOne({ where: { id } });
   }
-
 
   async createProduct(productDto: ProductDto): Promise<ProductEntity> {
     return this.productRepository.create({
