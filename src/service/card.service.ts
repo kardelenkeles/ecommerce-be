@@ -44,6 +44,7 @@ export class CardService {
     await Promise.all(promises);
 
     return this.getCard(cart.id);
+
   }
 
   async updateCard(cardId: number, cardDto: CardDto) {
@@ -75,8 +76,26 @@ export class CardService {
     await card.save();
 
     return this.getCard(card.id);
-
   }
 
+
+  async removeProductFromCart(cardId: number, productId: number) {
+    try {
+      const result = await CardProductEntity.destroy({
+        where: {
+          cardId: cardId,
+          productId: productId
+        }
+      });
+
+      if (result === 1) {
+        console.log("Ürün karttan başarıyla kaldırıldı.");
+      } else {
+        console.log("Ürün kartta bulunamadı.");
+      }
+    } catch (error) {
+      console.error("Hata:", error);
+    }
+  }
 
 }
