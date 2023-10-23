@@ -3,16 +3,18 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import databaseConfig from "./config/database.config";
 import { ConfigModule } from "@nestjs/config";
-import { ProductModule } from "./module/product.module";
-import { CardModule } from "./module/card.module";
+import { ProductModule } from "./product/product.module";
+import { CardModule } from "./cart/card.module";
 
 
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal: true,
     load: [databaseConfig]
-  }), ProductModule,
+  }),
+    ProductModule,
     CardModule,
+
   ],
   controllers: [AppController],
   providers: [AppService]

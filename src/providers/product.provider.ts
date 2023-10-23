@@ -1,4 +1,4 @@
-import { ProductEntity } from "../entity/product.entity";
+import { ProductEntity } from "../product/product.entity";
 
 
 export const productProvider = [

@@ -1,10 +1,10 @@
 
-import { ProductEntity } from "../entity/product.entity";
+import { ProductEntity } from "../product/product.entity";
 
 import { ConfigService } from "@nestjs/config";
 import { Sequelize } from "sequelize-typescript";
-import { CardEntity } from "../entity/card.entity";
-import { CardProductEntity } from "../entity/cardProduct.entity";
+import { CardEntity } from "../cart/card.entity";
+import { CardProductEntity } from "../cart/cardProduct.entity";
 
 export const databaseProviders = [
   {

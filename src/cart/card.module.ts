@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { DatabaseModule } from "./database.module";
-import { CardService } from "../service/card.service";
+import { DatabaseModule } from "../database/database.module";
+import { CardService } from "./card.service";
 import { cardProvider } from "../providers/card.provider";
 import { CardController } from "../controller/card.controller";
 

@@ -1,5 +1,5 @@
 import { BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
-import { ProductEntity } from "./product.entity";
+import { ProductEntity } from "../product/product.entity";
 import { CardEntity } from "./card.entity";
 
 @Table

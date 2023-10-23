@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
-import { CardEntity } from "../entity/card.entity";
-import { CardDto } from "../entity/dto/card.dto";
-import { CardProductEntity } from "../entity/cardProduct.entity";
-import { UpdateCardDto } from "../entity/dto/updateCard.dto";
-import { ProductEntity } from "../entity/product.entity";
+import { CardEntity } from "./card.entity";
+import { CardDto } from "./card.dto";
+import { CardProductEntity } from "./cardProduct.entity";
+import { UpdateCardDto } from "./updateCard.dto";
+import { ProductEntity } from "../product/product.entity";
 
 @Injectable()
 export class CardService {

@@ -1,7 +1,7 @@
 import { Inject, Injectable, Param, Query } from "@nestjs/common";
-import { ProductEntity } from "../entity/product.entity";
-import { ProductDto } from "../entity/dto/product.dto";
-import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
+import { ProductEntity } from "./product.entity";
+import { ProductDto } from "./product.dto";
+import { UpdateProductDto } from "./updateProduct.dto";
 
 @Injectable()
 export class ProductService {

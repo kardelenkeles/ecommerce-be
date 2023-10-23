@@ -9,10 +9,10 @@ import {
   Post,
   Put, Query
 } from "@nestjs/common";
-import { ProductEntity } from "../entity/product.entity";
-import { ProductService } from "../service/product.service";
-import { ProductDto } from "../entity/dto/product.dto";
-import { UpdateProductDto } from "../entity/dto/updateProduct.dto";
+import { ProductEntity } from "../product/product.entity";
+import { ProductService } from "../product/product.service";
+import { ProductDto } from "../product/product.dto";
+import { UpdateProductDto } from "../product/updateProduct.dto";
 
 
 @Controller("products")

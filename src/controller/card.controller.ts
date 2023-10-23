@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { CardService } from "../service/card.service";
-import { CardEntity } from "../entity/card.entity";
-import { CardDto } from "../entity/dto/card.dto";
-import { ProductDto } from "../entity/dto/product.dto";
+import { CardService } from "../cart/card.service";
+import { CardEntity } from "../cart/card.entity";
+import { CardDto } from "../cart/card.dto";
+import { ProductDto } from "../product/product.dto";
 
 @Controller("card")
 export class CardController {
@@ -19,21 +19,21 @@ export class CardController {
     return this.service.createCard(cardDto);
   }
 
-  @Put(':id')
-  async updateCard(@Param('id') cardId: number, @Body() cardDto: CardDto){
+  @Put(":id")
+  async updateCard(@Param("id") cardId: number, @Body() cardDto: CardDto) {
     return await this.service.updateCard(cardId, cardDto);
   }
 
-  @Delete(':cardId/:productId')
+  @Delete(":cardId/:productId")
   async removeProductFromCart(
-    @Param('cardId') cardId: number,
-    @Param('productId') productId: number){
+    @Param("cardId") cardId: number,
+    @Param("productId") productId: number) {
     try {
       await this.service.removeProductFromCart(cardId, productId);
-      return { message: 'Ürün karttan başarıyla kaldırıldı.' };
+      return { message: "Ürün karttan başarıyla kaldırıldı." };
     } catch (error) {
-      console.error('Hata:', error);
-      throw new Error('İstek işlenirken bir hata oluştu.');
+      console.error("Hata:", error);
+      throw new Error("İstek işlenirken bir hata oluştu.");
     }
   }
 
