@@ -21,7 +21,7 @@ export class UpdateUserDto{
   @IsOptional()
   @IsArray()
   @IsInt({ each: true })
-  roles: number[];
+  roles?: number[];
 
 
 }

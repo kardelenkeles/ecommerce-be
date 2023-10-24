@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { UserEntity } from "../../user/user.entity";
 import { UpdateUserDto } from "./updateUser.dto";
 import { AssignedRoles } from "../../role/entity/assigned-roles.entity";
+import { RoleEntity } from "../../role/entity/role.entity";
 
 @Injectable()
 export class AdminUserService {
@@ -36,7 +37,7 @@ export class AdminUserService {
     existingUser.email = updateUserDto.email || existingUser.email;
     existingUser.password = updateUserDto.password || existingUser.password;
 
-    if (updateUserDto.roles) {
+    if (updateUserDto.roles && updateUserDto.roles.length > 0) {
       const assignedRoles = await AssignedRoles.findAll({ where: { userId: id } });
       await Promise.all(assignedRoles.map((role) => role.destroy()));
 
