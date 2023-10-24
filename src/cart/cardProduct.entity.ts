@@ -5,6 +5,8 @@ import { CardEntity } from "./card.entity";
 @Table
 export class CardProductEntity extends Model {
 
+
+  @ForeignKey(() => ProductEntity)
   @Column
   productId: number;
 
@@ -17,4 +19,5 @@ export class CardProductEntity extends Model {
     sourceKey: "productId"
   })
   product: ProductEntity;
+
 }
