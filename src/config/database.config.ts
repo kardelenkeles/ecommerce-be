@@ -10,4 +10,5 @@ export default () => ({
     database: process.env.DATABASE_DATABASE,
     logging: !!process.env.DATABASE_LOGGING || false,
   },
+
 });

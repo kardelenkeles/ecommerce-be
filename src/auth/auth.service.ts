@@ -1,4 +1,4 @@
-import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { JwtPayloadModel } from "./model/jwt-payload.model";
 import { LoginDto } from "./dto/login.dto";
@@ -15,13 +15,30 @@ export class AuthService {
   }
 
   async validate(username: string, password: string): Promise<any> {
+
     const user = await this.userService.getUserByUsername(username);
 
-    if (!user || !await compare(password, user.password)) {
-      return "Username or password incorrect";
+    if (!user) {
+      throw new HttpException(
+        "User not found.",
+        HttpStatus.BAD_REQUEST
+      );
     }
 
+    const isMatch = compare(password, user.password);
+
+    console.log(password, user.password, isMatch);
+
+    if (!isMatch) {
+      throw new HttpException(
+        "Geçersiz email veya şifre.",
+        HttpStatus.UNAUTHORIZED
+      );
+    }
+    console.log('user bilgileri:', user);
+
     return user;
+
   }
 
   createToken(user: UserEntity) {
@@ -39,8 +56,8 @@ export class AuthService {
     const token = this.createToken(user);
 
     return {
-      username : user.username,
-      password : user.password,
+      username: user.username,
+      password: user.password,
       token: token
     };
 

@@ -21,5 +21,6 @@ export const databaseProviders = [
       return sequelize;
     },
     inject: [ConfigService],
+
   },
 ];
