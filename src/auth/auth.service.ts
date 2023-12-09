@@ -25,9 +25,9 @@ export class AuthService {
       );
     }
 
-    const isMatch = compare(password, user.password);
+    const isMatch = await compare(password, user.password);
 
-    console.log(password, user.password, isMatch);
+    console.log('isMatch',password, user.password, isMatch);
 
     if (!isMatch) {
       throw new HttpException(
@@ -35,7 +35,6 @@ export class AuthService {
         HttpStatus.UNAUTHORIZED
       );
     }
-    console.log('user bilgileri:', user);
 
     return user;
 

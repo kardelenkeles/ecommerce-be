@@ -24,24 +24,6 @@ export class UserService {
     });
   }
 
-  // async createUser(userData: any) {
-  //   console.log(userData);
-  //   const user = await UserEntity.create(
-  //     {
-  //       username: userData.username,
-  //       password: userData.password,
-  //       email: userData.email
-  //     },
-  //     {
-  //       fields: ["username", "password", "email"]
-  //     }
-  //   );
-  //   const defaultRole = await RoleEntity.findOne({ where: { name: 'user' } });
-  //   if (defaultRole) {
-  //     await AssignedRoles.create({ userId: user.id, roleId: defaultRole.id });
-  //   }
-  //   return user;
-  // }
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
 
     const hashedPassword = await hash(createUserDto.password, 10);
