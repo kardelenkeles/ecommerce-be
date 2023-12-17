@@ -10,6 +10,9 @@ export class CardEntity extends Model {
   @Column
   quantity: number;
 
+  @Column
+  userId: number;
+
   @HasMany(() => CardProductEntity)
   cardProduct: CardProductEntity[];
 

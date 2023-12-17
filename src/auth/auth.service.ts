@@ -5,6 +5,7 @@ import { LoginDto } from "./dto/login.dto";
 import { compare } from "bcrypt";
 import { UserService } from "./user/user.service";
 import { UserEntity } from "./user/user.entity";
+import { LoginResponseDto } from "./dto/login-response.dto";
 
 @Injectable()
 export class AuthService {
@@ -48,18 +49,12 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    const username = loginDto.username;
-    const password = loginDto.password;
-
-    const user = await this.validate(username, password);
+    const user = await this.validate(loginDto.username, loginDto.password);
     const token = this.createToken(user);
 
-    return {
-      username: user.username,
-      password: user.password,
-      token: token
-    };
+    const loginResponseDto = new LoginResponseDto(user, token);
 
+    return loginResponseDto;
   }
 
 }
